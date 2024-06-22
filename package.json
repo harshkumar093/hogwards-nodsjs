@@ -1,0 +1,14 @@
+{
+  "name": "hogwards",
+  "version": "1.0.0",
+  "description": "This is the data repo for hogwards.",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
