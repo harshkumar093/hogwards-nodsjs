@@ -1,0 +1,43 @@
+<html>
+  <body>
+    <br /><br /><br />
+    <input id="name" placeholder="Name of the house" /><br /><br /><br />
+    <input id="founder" placeholder="Name of the founder" /><br /><br /><br />
+    <input id="animal" placeholder="Name of the animal" /><br /><br /><br />
+    <input id="element" placeholder="Name of the element" /><br /><br /><br />
+    <button onclick="saveHouse()">Save</button>
+    <script>
+      const name = document.getElementById("name");
+      const founder = document.getElementById("founder");
+      const animal = document.getElementById("animal");
+      const element = document.getElementById("element");
+      function saveHouse() {
+        let payload = {
+          founder: founder.value,
+          animal: animal.value,
+          element: element.value,
+        };
+        console.log(payload, name.value);
+        fetch(`/api/houses?house=${name.value}`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(payload),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.statusCode == 200) {
+              alert("House saved successfully");
+            } else {
+              alert("Failed to save the house");
+            }
+          })
+          .catch((err) => {
+            console.log(err);
+            alert("Failed to make successful request");
+          });
+      }
+    </script>
+  </body>
+</html>

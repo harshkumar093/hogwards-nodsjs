@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HOME</title>
+  </head>
+
+  <body>
+    <h1>HOUSE</h1>
+    <h4>Enter the house name:</h4>
+    <input type="text" id="filetext" />
+    <br /><br />
+    <button onclick="findhouse()">Get the house</button>
+    <a href="./house/add-house.html">Add new house</a>
+    <div id="house-details"></div>
+    <script>
+      const findhouse = () => {
+        let box = document.getElementById("filetext").value;
+        fetch("/api/houses?house=" + box, {
+          method: "GET",
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            console.log(data);
+            if (data.statusCode === 200) {
+              const house = data.data;
+              document.getElementById("house-details").innerHTML = `
+                        <p><strong>Founder:</strong> ${house.founder}</p>
+                        <p><strong>Animal:</strong> ${house.animal}</p>
+                        <p><strong>Element:</strong> ${house.element}</p>
+                    `;
+            } else {
+              document.getElementById(
+                "house-details"
+              ).innerHTML = `<p>${data.message}</p>`;
+            }
+          })
+          .catch((error) => {
+            console.log(error);
+            alert("Failed to retrieve data");
+          });
+      };
+    </script>
+    <!-- <script src="index.js"></script> -->
+  </body>
+</html>
