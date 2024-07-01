@@ -1,14 +1,14 @@
 const express = require("express");
 const { ResponseMessage } = require("../util/Constants");
 const routerHouseController = express.Router();
-const { getHouseByHouseName } = require("./house.service");
+const { getHouseByHouseName, addhouse } = require("./house.service");
 
 routerHouseController.get("", (req, res) => {
   try {
     const { house } = req.query;
     getHouseByHouseName(house);
   } catch (error) {
-    console.log(error);
+    console.log(error); 
     res.status(500).json(ResponseMessage(500, "Internal Server Error", error));
   }
 });
@@ -19,7 +19,7 @@ routerHouseController.post("", (req, res) => {
     const { house } = req.query;
     const { founder, animal, element } = req.body;
     console.log(house, founder, animal, element);
-    res.json(ResponseMessage(200, "Success"));
+    addhouse(house, founder, animal, element);
   } catch (error) {
     console.log(error);
     res.status(500).json(ResponseMessage(500, "Internal Server Error", error));

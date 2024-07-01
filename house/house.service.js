@@ -33,6 +33,24 @@ const getHouseByHouseName = (houseName) => {
   }
 };
 
+
+const addhouse = (house, founder, animal, element) => {
+  const addhouse = JSON.parse(fs.readFileSync("./database/houses.json"));
+  let houseitem = {
+    house: house,
+    founder: founder,
+    animal: animal,
+    element: element,
+  };
+  addhouse.push(houseitem);
+  console.log(addhouse);
+  fs.writeFile("./database/houses.json", JSON.stringify(addhouse), () => {
+    console.log("File got updated");
+  })
+  res.status(200).json(ResponseMessage(200, "Success"));
+}
+
 module.exports = {
   getHouseByHouseName,
+  addhouse,
 };
