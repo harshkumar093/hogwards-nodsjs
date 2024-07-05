@@ -1,0 +1,17 @@
+<html>
+  <body>
+    <input type="text" id="candidateName" />
+    <br /><br />
+    <button onclick="searchCandidate()">Search</button>
+    <script>
+      const candidateName = document.getElementById("candidateName");
+      function searchCandidate() {
+        fetch(`/api/candidate?candidateName=${candidateName.value}`)
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+          });
+      }
+    </script>
+  </body>
+</html>

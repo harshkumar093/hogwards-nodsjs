@@ -1,7 +1,7 @@
 const fs = require("fs");
 const { ResponseMessage } = require("../util/Constants");
 
-const getHouseByHouseName = (houseName) => {
+const getHouseByHouseName = (res, houseName) => {
   if (!houseName) {
     res
       .status(404)
@@ -33,22 +33,21 @@ const getHouseByHouseName = (houseName) => {
   }
 };
 
-
-const addhouse = (house, founder, animal, element) => {
+const addhouse = (res, house, founder, animal, element) => {
   const addhouse = JSON.parse(fs.readFileSync("./database/houses.json"));
   let houseitem = {
-    house: house,
-    founder: founder,
-    animal: animal,
-    element: element,
+    name: house,
+    founder,
+    animal,
+    element,
   };
   addhouse.push(houseitem);
   console.log(addhouse);
   fs.writeFile("./database/houses.json", JSON.stringify(addhouse), () => {
     console.log("File got updated");
-  })
+  });
   res.status(200).json(ResponseMessage(200, "Success"));
-}
+};
 
 module.exports = {
   getHouseByHouseName,

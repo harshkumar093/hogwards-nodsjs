@@ -1,0 +1,18 @@
+[
+  {
+    "name": "Gryffindor",
+    "candidate": ["Harry Potter", "Ron Weasely"]
+  },
+  {
+    "name": "Ravenclaw",
+    "candidate": ["John Wick", "Ronaldo Nazario"]
+  },
+  {
+    "name": "Hufflepuff",
+    "candidate": ["Zinedin Zidane", "Carlos Puyol"]
+  },
+  {
+    "name": "Slytherin",
+    "candidate": ["Richardo Kaka", "Paolo Maldini"]
+  }
+]
